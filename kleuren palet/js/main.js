@@ -50,26 +50,77 @@ class ColorList{
         this.htmlElement = document.createElement("ul");
         this.htmlElement.id = this.id;
         this.htmlElement.classList.add("colors");
+        this.render();
+       
+    }
+
+    render(){
         document.querySelector("body").appendChild(this.htmlElement);
     }
 }
 
-const colorList = new ColorList("js--colors");
+class HSLGenerator{
+    randomHue;
+    randomSaturation;
+    randomLightness;
+    hsl;
 
-for(let i = 1; i < 101; i++ ){
-    //nummer inclusief 1 - 360 inclusief => hue
-    //percentage inclusief 1 - 79 => saturatie
-    //percentage inclusief 11 - 100 => LICHT
-    //x = Math.random() * (max - min) + min;
-    // colors[i].style.animationDelay = i/10 + "s";
-    let randomHue = Math.floor(Math.random() * (360 - 1) + 1);
-    let randomSaturation =Math.floor(Math.random() * (79 - 11) + 11) + "%";
-    let randomLightness = Math.floor(Math.random() * (100 - 11) + 11) + "%";
+    constructor(){
+    this.generateHSL();
 
+    }
+    
+    generateHue = function(){
+        this.randomHue = Math.floor(Math.random() * (360 - 1) + 1);
 
-    let hsl = `hsl(${randomHue}, ${randomSaturation}, ${randomLightness})`
-    new colorCard(i, hsl ,document.getElementById(colorList.id));
+    }
+
+    generateSaturation = function(){
+        this.randomSaturation = Math.floor(Math.random() * (79 - 11) + 11) + "%";
+
+    }
+
+    generateLightness = function(){
+        this.randomLightness = Math.floor(Math.random() * (100 - 11) + 11) + "%";
+
+    }
+
+    generateHSL = function(){
+        this.generateHue();
+        this.generateSaturation();
+        this.generateLightness();
+        this.hsl = `hsl(${this.randomHue}, ${this.randomSaturation}, ${this.randomLightness})`
+        
+    }
+
+    
 }
+
+class App{
+    id;
+    ColorList;
+    HSLGenerator;
+
+    constructor(newId){
+        this.id = newId;
+        this.colorList = new ColorList(this.id);
+        this.HSLGenerator = new HSLGenerator();
+        this.generateColorCards();
+    }
+
+    generateColorCards = function(){
+        for(let i = 1; i <=100; i++ ){
+            this.HSLGenerator.generateHSL();
+            new colorCard(i, this.HSLGenerator.hsl, document.getElementById(this.colorList.id));
+        }
+    }
+}
+
+const app = new App("js--app");
+const app2 = new App("js--app--2");
+const app3 = new App("js--app--3");
+
+
 
 
 
