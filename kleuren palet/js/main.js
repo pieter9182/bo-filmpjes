@@ -1,4 +1,4 @@
-class colorCard{
+class ColorCard{
     id;
     color;
     addToList;
@@ -111,7 +111,7 @@ class App{
     generateColorCards = function(){
         for(let i = 1; i <=100; i++ ){
             this.HSLGenerator.generateHSL();
-            new colorCard(i, this.HSLGenerator.hsl, document.getElementById(this.colorList.id));
+            new ColorCard(i, this.HSLGenerator.hsl, document.getElementById(this.colorList.id));
         }
     }
 }

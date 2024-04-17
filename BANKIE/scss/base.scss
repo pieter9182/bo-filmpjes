@@ -1,0 +1,9 @@
+@use "./abstracts/colors";
+@use "./abstracts/vars";
+body {
+    padding: 4rem;
+    font-family: "Open Sans", sans-serif; /* Corrected 'sans-sarif' to 'sans-serif' */
+    background: linear-gradient(to bottom right, #6acd0c, 30%, #000000);
+    min-height: 100vh;
+  }
+  

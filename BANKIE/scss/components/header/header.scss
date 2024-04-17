@@ -1,0 +1,16 @@
+@use "../../abstracts/vars";
+.header{
+    background: white;
+    height:map-get(vars.$vhCalc, "heightOfHeader"); /* de calc verzoorgt ervoor dat iets precies in je scherm kan gezet worden met een calculatie*/
+    font-family: "Amatic SC", cursive;
+
+    &__logo{
+        display: flex;
+        font-size: 300%;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+}
+
